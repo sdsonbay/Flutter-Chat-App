@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "566396546559",
+    "project_id": "chat-app-9a9d5",
+    "storage_bucket": "chat-app-9a9d5.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:566396546559:android:6ba3260b1ab95304e34bca",
+        "android_client_info": {
+          "package_name": "denizsonbay.flutter_chat"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "566396546559-24sod93veltgofc0rpiveaa3hrmn59to.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBv4F4-6XQmLGSU6lmuwh8G2MmrnC30N6E"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "566396546559-24sod93veltgofc0rpiveaa3hrmn59to.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

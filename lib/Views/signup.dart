@@ -8,12 +8,18 @@ class SignUp extends StatefulWidget {
 }
 
 class _SignUpState extends State<SignUp> {
+  final formKey = GlobalKey<FormState>();
   TextEditingController usernameTextEditingController =
       new TextEditingController();
   TextEditingController emailTextEditingController =
       new TextEditingController();
   TextEditingController passwordTextEditingController =
       new TextEditingController();
+
+  signMeUp() {
+    if (formKey.currentState.validate()) {}
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -27,29 +33,51 @@ class _SignUpState extends State<SignUp> {
             child: Column(
               mainAxisSize: MainAxisSize.min,
               children: [
-                SizedBox(
-                  height: 50,
-                ),
-                TextField(
-                  controller: usernameTextEditingController,
-                  style: TextStyle(color: Colors.white),
-                  decoration: textFieldInputDecoration('Username'),
-                ),
-                SizedBox(
-                  height: 24,
-                ),
-                TextField(
-                  controller: emailTextEditingController,
-                  style: TextStyle(color: Colors.white),
-                  decoration: textFieldInputDecoration('Email'),
-                ),
-                SizedBox(
-                  height: 24,
-                ),
-                TextField(
-                  controller: passwordTextEditingController,
-                  style: TextStyle(color: Colors.white),
-                  decoration: textFieldInputDecoration('Password'),
+                Form(
+                  key: formKey,
+                  child: Column(
+                    children: [
+                      SizedBox(
+                        height: 50,
+                      ),
+                      TextFormField(
+                        validator: (val) {
+                          return val.isEmpty || val.length < 4
+                              ? 'Enter a valid username'
+                              : null;
+                        },
+                        controller: usernameTextEditingController,
+                        style: TextStyle(color: Colors.white),
+                        decoration: textFieldInputDecoration('Username'),
+                      ),
+                      SizedBox(
+                        height: 24,
+                      ),
+                      TextFormField(
+                        validator: (val) {
+                          return RegExp(
+                                      r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_'{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
+                                  .hasMatch(val)
+                              ? null
+                              : "Enter a valid email";
+                        },
+                        controller: emailTextEditingController,
+                        style: TextStyle(color: Colors.white),
+                        decoration: textFieldInputDecoration('Email'),
+                      ),
+                      SizedBox(
+                        height: 24,
+                      ),
+                      TextFormField(
+                        validator: (val) {
+                          return val.length > 6 ? null : "Enter a password";
+                        },
+                        controller: passwordTextEditingController,
+                        style: TextStyle(color: Colors.white),
+                        decoration: textFieldInputDecoration('Password'),
+                      ),
+                    ],
+                  ),
                 ),
                 SizedBox(
                   height: 24,
@@ -65,16 +93,21 @@ class _SignUpState extends State<SignUp> {
                 SizedBox(
                   height: 24,
                 ),
-                Container(
-                  alignment: Alignment.center,
-                  width: MediaQuery.of(context).size.width,
-                  padding: EdgeInsets.symmetric(vertical: 20),
-                  decoration: BoxDecoration(
-                      color: Colors.blueAccent,
-                      borderRadius: BorderRadius.circular(50.0)),
-                  child: Text(
-                    'Sign In',
-                    style: TextStyle(color: Colors.white),
+                GestureDetector(
+                  onTap: () {
+                    signMeUp();
+                  },
+                  child: Container(
+                    alignment: Alignment.center,
+                    width: MediaQuery.of(context).size.width,
+                    padding: EdgeInsets.symmetric(vertical: 20),
+                    decoration: BoxDecoration(
+                        color: Colors.blueAccent,
+                        borderRadius: BorderRadius.circular(50.0)),
+                    child: Text(
+                      'Sign In',
+                      style: TextStyle(color: Colors.white),
+                    ),
                   ),
                 ),
                 SizedBox(
